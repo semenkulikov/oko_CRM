@@ -11,16 +11,26 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import find_dotenv, load_dotenv
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+if find_dotenv():
+    load_dotenv(dotenv_path=BASE_DIR / ".env")
+else:
+    exit("Переменные окружения не загружены, т.к. не найден файл .env!")
+
+API_AUTHORIZATION_TOKEN = os.getenv('API_AUTHORIZATION_TOKEN')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4^^&wk8_ob+tvht%_0s@a&jxl-dh@nmo$ecwhp^31w&k&6^%)a'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
