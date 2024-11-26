@@ -11,35 +11,33 @@
     <div class="clear"></div>
     <form action="{% url 'authapp:signup' %}" method="post">{% csrf_token %}
         <div class="form-wrap">
-            <table>
-                <tr>
-                    <td>{{ form.first_name.label_tag }}</td>
-                    <td>{{ form.first_name }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.last_name.label_tag }}</td>
-                    <td>{{ form.last_name }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.middle_name.label_tag }}</td>
-                    <td>{{ form.middle_name }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.email.label_tag }}</td>
-                    <td>{{ form.email }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.password1.label_tag }}</td>
-                    <td>{{ form.password1 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.password2.label_tag }}</td>
-                    <td>{{ form.password2 }}</td>
-                </tr>
-            </table>
+            <div class="mb-3">
+              <label for="formGroupExampleInput" class="form-label">{{ form.first_name.label_tag }}</label>
+              {{ form.first_name }}
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label">{{ form.last_name.label_tag }}</label>
+              {{ form.last_name }}
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput3" class="form-label">{{ form.middle_name.label_tag }}</label>
+              {{ form.middle_name }}
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput4" class="form-label">{{ form.email.label_tag }}</label>
+              {{ form.email }}
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput5" class="form-label">{{ form.password1.label_tag }}</label>
+              {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput6" class="form-label">{{ form.password2.label_tag }}</label>
+              {{ form.password2 }}
+            </div>
             
-            <input class="input-reg" type="submit" value="Зарегистрироваться"/>
-            <a class="registr log-in" href="{% url 'authapp:login' %}">
+            <input class="btn btn-primary" type="submit" value="Зарегистрироваться"/>
+            <a class="" href="{% url 'authapp:login' %}">
                 Войти
             </a>
         </div>

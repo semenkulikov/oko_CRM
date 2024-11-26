@@ -8,7 +8,7 @@
     <p>Email: {{ user.email }}</p>
     <form method="post" action="{% url 'authapp:logout' %}">
         {% csrf_token %}
-        <input type="submit" value="Выйти">
+        <input class="btn btn-primary" type="submit" value="Выйти">
     </form>
     <a href="{% url 'index' %}">На главную</a>
 {% endblock %}

@@ -1,33 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-<h1>Это главная страница</h1>
+{% extends 'base.html' %}
 
-<h2>Приветствуем тебя, {{ user.first_name }}</h2>
-
-<div class="reference">
-    <div>
-        <a class="registr log-in" href="{% url 'authapp:login' %}">
-            Войти
-        </a>
+{% block content %}
+    <h1>Это главная страница</h1>
+    
+    <h2>Добро пожаловать, {% firstof user.first_name "Anonymous" %}</h2>
+    
+    <div class="reference">
+        <div>
+            <a class="registr log-in" href="{% url 'authapp:login' %}">
+                Войти
+            </a>
+        </div>
+        <div>
+            <a class="registr" href="{% url 'authapp:signup' %}">
+                Регистрация
+            </a>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'authapp:logout' %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Выйти">
+                </form>
+            {% endif %}
+        </div>
     </div>
-    <div>
-        <a class="registr" href="{% url 'authapp:signup' %}">
-            Регистрация
-        </a>
-    </div>
-    <div>
-        {% if user.is_authenticated %}
-            <form method="post" action="{% url 'authapp:logout' %}">
-                {% csrf_token %}
-                <input type="submit" value="Выйти">
-            </form>
-        {% endif %}
-    </div>
-</div>
-</body>
-</html>
+{% endblock %}
