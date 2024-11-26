@@ -90,6 +90,37 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} | {levelname} | {module}__{funcName} - {message}',
+            'style': '{',
+        },
+    },
+    "handlers": {
+        "file_handler": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            'filename': BASE_DIR / os.path.normpath(os.path.join("logs", 'project_log.log')),
+            "formatter": "verbose",
+        },
+        "console_handler": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "global": {
+            "handlers": ["file_handler", "console_handler"],
+            "level": "DEBUG",
+            "propagate": True,
+        }
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
