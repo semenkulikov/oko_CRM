@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Страница профиля</h1>
+    <p>Имя: {{ user.first_name }}</p>
+    <p>Фамилия: {{ user.last_name }}</p>
+    <p>Отчество: {{ user.middle_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <form method="post" action="{% url 'authapp:logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="Выйти">
+    </form>
+    <a href="{% url 'index' %}">На главную</a>
+{% endblock %}
+
