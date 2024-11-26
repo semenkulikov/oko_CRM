@@ -43,8 +43,8 @@ class UserLoginView(LoginView):
             user = form.get_user()
             login(request, user)
             if user.is_superuser:
-                logger.info(f"Администратор {user.first_name} {user.last_name} успешно авторизовался!")
-                return HttpResponseRedirect(reverse('admin-panel'))
+                logger.info(f"Администратор {user.email} {user.first_name} успешно авторизовался!")
+                return HttpResponseRedirect('/admin')
             else:
                 logger.info(f"Пользователь {user.first_name} {user.last_name} успешно авторизовался!")
                 return HttpResponseRedirect(reverse('authapp:profile'))
