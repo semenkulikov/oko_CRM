@@ -33,9 +33,13 @@ API_AUTHORIZATION_TOKEN = os.getenv('API_AUTHORIZATION_TOKEN')
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    os.getenv("SERVER_IP"),
+]
 
 
 # Application definition
@@ -166,3 +170,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authapp.User'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
