@@ -11,11 +11,11 @@
                 Войти
             </a>
         </div>
-        <div>
-            <a class="registr" href="{% url 'authapp:signup' %}">
-                Регистрация
-            </a>
-        </div>
+{#        <div>#}
+{#            <a class="registr" href="{% url 'authapp:signup' %}">#}
+{#                Регистрация#}
+{#            </a>#}
+{#        </div>#}
         <div>
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'authapp:logout' %}">

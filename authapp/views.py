@@ -61,35 +61,35 @@ class UserLogoutView(LogoutView):
     next_page = '/'
 
 
-class UserSignUpView(CreateView):
-    """
-    Регистрация пользователя
-    """
-    model = User
-    template_name = 'authapp/registr.html'
-    form_class = UserSignUpForm
-    success_url = reverse_lazy('authapp:login')
-
-    def get(self, request, *args, **kwargs) \
-            -> HttpResponse:
-        """
-        Метод для отображения страницы регистрации и формы
-        """
-        form = self.form_class(data=request.GET)
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('index'))
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs) -> HttpResponse:
-        form = self.form_class(data=request.POST)
-        if form.is_valid():  # форма прошла валидацию
-            user = form.save(commit=False)
-            user.save()
-            logger.info(f'Пользователь {user.first_name} {user.last_name} зарегистрирован')
-            return HttpResponseRedirect(reverse('authapp:login'))
-        else:  # при наличии ошибок в форме
-            messages.error(request, *list(form.errors.values()))
-        return render(request, self.template_name, {'form': form})
+# class UserSignUpView(CreateView):
+#     """
+#     Регистрация пользователя
+#     """
+#     model = User
+#     template_name = 'authapp/registr.html'
+#     form_class = UserSignUpForm
+#     success_url = reverse_lazy('authapp:login')
+#
+#     def get(self, request, *args, **kwargs) \
+#             -> HttpResponse:
+#         """
+#         Метод для отображения страницы регистрации и формы
+#         """
+#         form = self.form_class(data=request.GET)
+#         if request.user.is_authenticated:
+#             return HttpResponseRedirect(reverse('index'))
+#         return render(request, self.template_name, {'form': form})
+#
+#     def post(self, request, *args, **kwargs) -> HttpResponse:
+#         form = self.form_class(data=request.POST)
+#         if form.is_valid():  # форма прошла валидацию
+#             user = form.save(commit=False)
+#             user.save()
+#             logger.info(f'Пользователь {user.first_name} {user.last_name} зарегистрирован')
+#             return HttpResponseRedirect(reverse('authapp:login'))
+#         else:  # при наличии ошибок в форме
+#             messages.error(request, *list(form.errors.values()))
+#         return render(request, self.template_name, {'form': form})
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from authapp.views import UserLoginView, UserLogoutView, UserSignUpView, ProfileDetailView
+from authapp.views import UserLoginView, UserLogoutView, ProfileDetailView
 
 app_name = 'authapp'
 
@@ -9,8 +9,8 @@ urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     # path('set-password/<uidb64>/<token>/', UserPassChangeView.as_view(),
     #      name='set_pass'),
-    path('signup/', UserSignUpView.as_view(),
-         name='signup'),
+    # path('signup/', UserSignUpView.as_view(),
+    #      name='signup'),
     path('logout/', UserLogoutView.as_view(),
          name='logout'),
     path('profile/', ProfileDetailView.as_view(), name='profile')
