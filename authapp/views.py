@@ -9,7 +9,7 @@ from django.views.generic import CreateView, DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, \
     reverse
-from authapp.forms import UserLoginForm, UserSignUpForm
+from authapp.forms import UserLoginForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -38,7 +38,7 @@ class UserLoginView(LoginView):
 
     def post(self, request, *args, **kwargs) -> HttpResponse:
         form = self.form_class(data=request.POST)
-        logger.info(f"Попытка авторизации! {form.data.get('username')}: {form.data.get('password')}")
+        logger.info(f"Попытка авторизации! {form.fields.get("username")}: {form.fields.get("password")}")
         if form.is_valid():  # форма прошла валидацию
             user = form.get_user()
             login(request, user)

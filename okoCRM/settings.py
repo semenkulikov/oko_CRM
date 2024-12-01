@@ -170,6 +170,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authapp.User'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
